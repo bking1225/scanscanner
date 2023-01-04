@@ -441,14 +441,6 @@ export default class App extends React.Component<any, any> {
   }
 
   async onFeatureClick(feature: any) {
-    const valid = await ScanbotSdkService.instance.isLicenseValid();
-    if (!valid) {
-      console.error(
-        "License invalid or expired. ScanbotSDK features not available"
-      );
-      return;
-    }
-
     if (feature.id === RoutePath.DocumentScanner) {
       this._documentScanner?.push(AnimationType.PushRight);
       return;

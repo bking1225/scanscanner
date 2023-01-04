@@ -196,7 +196,13 @@ window.onload = async () => {
       supportedLanguages: ['eng', 'deu']
     };
 
-    textDataScanner = await scanbotSDK.createTextDataScanner(config);
+    try {
+      textDataScanner = await scanbotSDK.createTextDataScanner(config);
+    } catch (e) {
+      console.log(e.name + ': ' + e.message);
+      alert(e.name + ': ' + e.message);
+      Utils.getElementByClassName("mrz-scanner-controller").style.display = "none";
+    }
   };
 
   Utils.getElementByClassName("scanner-results-button").onclick = async (e) => {
