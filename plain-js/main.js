@@ -431,6 +431,10 @@ async function onBarcodesDetected(e) {
     result = await scanbotSDK.toDataUrl(e.barcodes[0].barcodeImage);
   }
 
+  for (let i = 0; i < e.barcodes.length; i++) {
+    console.log(`Barcode image length: ${e.barcodes[i].barcodeImage?.length || 0} for barcode ${i}`);
+  }
+
   Toastify({ text: text.slice(0, -1), duration: 3000, avatar: result }).showToast();
 }
 

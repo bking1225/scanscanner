@@ -142,7 +142,8 @@ export class ScanbotSdkService {
       captureDelay: 1000,
       onBarcodesDetected: callback,
       barcodeFormats: barcodeFormats,
-      onError: errorCallback
+      onError: errorCallback,
+      returnBarcodeImage: true
     };
 
     this.barcodeScanner = await this.sdk!.createBarcodeScanner(config);

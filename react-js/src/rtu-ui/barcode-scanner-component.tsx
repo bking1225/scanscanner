@@ -1,5 +1,5 @@
 import { ScanbotSdkService } from "../service/scanbot-sdk-service";
-import { BarcodeResult } from "scanbot-web-sdk/@types";
+import { Barcode, BarcodeResult } from "scanbot-web-sdk/@types";
 import BaseScannerComponent from "./common/base-scanner-component";
 import { AnimationType } from "./enum/animation-type";
 import Barcodes from "../model/barcodes";
@@ -17,6 +17,10 @@ export default class BarcodeScannerComponent extends BaseScannerComponent {
   }
 
   onBarcodesDetected(result: BarcodeResult) {
+    for (let i = 0; i < result.barcodes.length; i++) {
+      console.log(`Barcode image length: ${result.barcodes[i].barcodeImage?.length || 0} for barcode ${i}`);
+    }
+
     this.props.onBarcodesDetected(result);
     document.getElementById("count-label")!.innerHTML = this.labelText();
   }

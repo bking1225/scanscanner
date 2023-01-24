@@ -70,7 +70,8 @@ export class BarcodeScannerComponent implements OnInit {
       onBarcodesDetected: this.onBarcodesDetected.bind(this),
       containerId: ScanbotSdkService.BARCODE_SCANNER_CONTAINER_ID,
       barcodeFormats,
-      onError: this.barcodeScannerError.bind(this)
+      onError: this.barcodeScannerError.bind(this),
+      returnBarcodeImage: true
     };
 
     try {
@@ -87,6 +88,10 @@ export class BarcodeScannerComponent implements OnInit {
   }
 
   async onBarcodesDetected(result: BarcodeResult) {
+    for (let i = 0; i < result.barcodes.length; i++) {
+      console.log(`Barcode image length: ${result.barcodes[i].barcodeImage?.length || 0} for barcode ${i}`);
+    }
+
     this.documents.addBarcodes(result.barcodes);
     this.toastr.success(
       Utils.formatBarcodes(result.barcodes),
