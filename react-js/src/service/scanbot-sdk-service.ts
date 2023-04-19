@@ -145,7 +145,8 @@ export class ScanbotSdkService {
       onBarcodesDetected: callback,
       barcodeFormats: barcodeFormats,
       onError: errorCallback,
-      preferredCamera: 'camera2 0, facing back'
+      preferredCamera: 'camera2 0, facing back',
+      zoom: 5.0,
     };
 
     this.barcodeScanner = await this.sdk!.createBarcodeScanner(config);

@@ -45,7 +45,9 @@ export default class BaseScannerComponent extends React.Component<any, any> {
     if (cameras) {
       const currentCameraInfo = scanner?.getActiveCameraInfo();
       if (currentCameraInfo) {
-        const cameraIndex = cameras.findIndex((cameraInfo) => { return cameraInfo.deviceId == currentCameraInfo.deviceId });
+        const cameraIndex = cameras.findIndex((cameraInfo) => {
+          return cameraInfo.deviceId === currentCameraInfo.deviceId;
+        });
         const newCameraIndex = (cameraIndex + 1) % (cameras.length);
         alert(`Current camera: ${currentCameraInfo.label}.\nSwitching to: ${cameras[newCameraIndex].label}`)
         scanner?.switchCamera(cameras[newCameraIndex].deviceId);
